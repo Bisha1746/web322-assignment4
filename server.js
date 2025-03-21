@@ -4,8 +4,8 @@
 *  No part of this assignment has been copied manually or electronically from any other source
 *  (including 3rd party web sites) or distributed to other students.
 * 
-*  Name: Bishal Bhandari
-*  Student ID: 173510231
+*  Name: Your Name
+*  Student ID: 123456789
 *  Date: 2025-03-21
 *  Cyclic Web App URL: https://your-cyclic-app.cyclic.app
 *  GitHub Repository URL: https://github.com/your-username/web322-assignment4
@@ -19,6 +19,7 @@ const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 const exphbs = require("express-handlebars");
 const storeService = require("./store-service");
+require("dotenv").config(); // Load environment variables
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,11 +28,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-// Cloudinary config
+// Cloudinary config using environment variables
 cloudinary.config({
-  cloud_name: "your-cloud-name",
-  api_key: "your-api-key",
-  api_secret: "your-api-secret",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
   secure: true,
 });
 
@@ -122,50 +123,6 @@ app.get("/categories", (req, res) => {
   storeService.getCategories()
     .then(data => res.render("categories", { categories: data }))
     .catch(() => res.render("categories", { message: "no results" }));
-});
-
-app.get("/shop", async (req, res) => {
-  try {
-    const category = req.query.category;
-    const items = category
-      ? await storeService.getPublishedItemsByCategory(category)
-      : await storeService.getPublishedItems();
-    const post = items.length ? items[0] : null;
-    const categories = await storeService.getCategories();
-
-    res.render("shop", {
-      data: { items, post, categories }
-    });
-  } catch {
-    res.render("shop", {
-      data: {
-        message: "no results",
-        categoriesMessage: "no categories"
-      }
-    });
-  }
-});
-
-app.get("/shop/:id", async (req, res) => {
-  try {
-    const category = req.query.category;
-    const post = await storeService.getItemById(req.params.id);
-    const items = category
-      ? await storeService.getPublishedItemsByCategory(category)
-      : await storeService.getPublishedItems();
-    const categories = await storeService.getCategories();
-
-    res.render("shop", {
-      data: { items, post, categories }
-    });
-  } catch {
-    res.render("shop", {
-      data: {
-        message: "no results",
-        categoriesMessage: "no categories"
-      }
-    });
-  }
 });
 
 app.use((req, res) => {
