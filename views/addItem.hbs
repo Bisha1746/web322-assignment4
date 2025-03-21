@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+</head>
+<body>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Add New Item</h2>
+    <form action="/items/add" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="title" class="form-label">Item Title:</label>
+        <input type="text" class="form-control" name="title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category:</label>
+        <input type="number" class="form-control" name="category" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price:</label>
+        <input type="number" class="form-control" name="price" step="0.01" required>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="published" id="published">
+        <label class="form-check-label" for="published">Published</label>
+      </div>
+
+      <div class="mb-3">
+        <label for="featureImage" class="form-label">Feature Image:</label>
+        <input type="file" class="form-control" name="featureImage">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Item</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+

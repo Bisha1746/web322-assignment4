@@ -1,0 +1,21 @@
+[
+    { "id": 1, "category": 1, "price": 5.99, "title": "Shampoo Clinic Plus" },
+    { "id": 2, "category": 1, "price": 4.99, "title": "Colgate" },
+    { "id": 3, "category": 2, "price": 245.99, "title": "Wireless Earbuds" },
+    { "id": 4, "category": 2, "price": 99.99, "title": "Smart Plugs" },
+    { "id": 5, "category": 3, "price": 19.99, "title": "T-Shirt" },
+    { "id": 6, "category": 3, "price": 49.99, "title": "Jeans" },
+    { "id": 7, "category": 4, "price": 49.99, "title": "Basketball" },
+    { "id": 8, "category": 4, "price": 89.99, "title": "Football" },
+    { "id": 9, "category": 5, "price": 49.99, "title": "Dry Fruits" },
+    { "id": 10, "category": 5, "price": 5.99, "title": "Energy Drink" },
+    { "id": 11, "category": 5, "price": 6.99, "title": "Instant Noodles" },
+    { "id": 12, "category": 5, "price": 7.99, "title": "Halloumi" },
+    { "id": 13, "category": 6, "price": 129.99, "title": "Necklace Set" },
+    { "id": 14, "category": 6, "price": 49.99, "title": "Bracelets" },
+    { "id": 15, "category": 7, "price": 19.99, "title": "Notebook Set" },
+    { "id": 16, "category": 7, "price": 19.99, "title": "Calculators" },
+    { "id": 17, "category": 8, "price": 89.99, "title": "Dhaka sets " },
+    { "id": 18, "category": 8, "price": 119.99, "title": "Party Gowns " },
+    { "id": 19, "category": 8, "price": 69.99, "title": "Ethnic Stoles " }
+]

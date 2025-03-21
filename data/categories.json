@@ -1,0 +1,10 @@
+[
+    { "id": 1, "category": "Daily Essentials" },
+    { "id": 2, "category": "Smart Tech & Accessories" },
+    { "id": 3, "category": "Casual & Formal Wear" },
+    { "id": 4, "category": "Active & Outdoor Gear" },
+    { "id": 5, "category": "Quick Bites & Beverages" },
+    { "id": 6, "category": "Trendy Accessories" },
+    { "id": 7, "category": "Study & Work Supplies" },
+    { "id": 8, "category": "Cultural & Festive Wear" }
+]

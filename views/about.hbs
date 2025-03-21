@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gagan's eCommerce Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f3e5f5, #ffffff); /* Soft gradient background */
+            color: #4a4a4a; /* Dark gray text for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sticky Header */
+        header {
+            background: #6a1b9a; /* Purple header */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
+        h2 {
+            color: #ab47bc; /* Light purple for subheadings */
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* Category List Styles */
+        #category-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #category-list li {
+            margin: 10px 0;
+        }
+
+        #category-list li a {
+            text-decoration: none;
+            color: white;
+            background: #e91e63; /* Pink background for category links */
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            transition: background 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        #category-list li a:hover {
+            background: #6a1b9a; /* Purple on hover */
+            transform: translateY(-3px);
+        }
+
+        /* Item List Styles */
+        #item-list {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        #item-list li {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        #item-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        #item-list li h3 {
+            color: #6a1b9a; /* Purple for item titles */
+            margin: 0 0 10px;
+            font-size: 1.4em;
+        }
+
+        #item-list li p {
+            color: #4a4a4a; /* Dark gray for item details */
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            #category-list li a {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+
+            #item-list {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Store</h1>
+    </header>
+    <main>
+        <h2>Categories</h2>
+        <ul id="category-list"></ul>
+
+        <h2>Items</h2>
+        <ul id="item-list"></ul>
+    </main>
+
+    <script>
+        async function fetchCategories() {
+            const res = await fetch('/categories');
+            const categories = await res.json();
+            const categoryList = document.getElementById("category-list");
+
+            categories.forEach(category => {
+                let li = document.createElement("li");
+                li.innerHTML = `<a href="#" onclick="fetchItems(${category.id})">${category.category}</a>`;
+                categoryList.appendChild(li);
+            });
+        }
+
+        async function fetchItems(categoryId) {
+            const res = await fetch(`/items/${categoryId}`);
+            const items = await res.json();
+            const itemList = document.getElementById("item-list");
+            itemList.innerHTML = ""; // Clear previous items
+
+            items.forEach(item => {
+                let li = document.createElement("li");
+                li.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>$${item.price}</p>
+                    <p>${item.description || ''}</p>
+                `;
+                itemList.appendChild(li);
+            });
+        }
+
+        fetchCategories(); // Load categories on page load
+    </script>
+</body>
+</html>
